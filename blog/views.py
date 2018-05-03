@@ -11,3 +11,9 @@ def post_list(request):
     return render(request, 'blog/post_list.html', {
         'post_list': qs,
     })
+
+def post_detail(request,detail_pk):
+    post = Post.objects.get(pk=detail_pk)
+    return render(request, 'blog/post_detail.html', {
+        'detail': post,
+    })
