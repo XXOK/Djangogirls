@@ -3,9 +3,11 @@
 {% block content %}
     {% for post in post_list %}
         <div class="post">
-            <div class="date">
-                <p>[{{ post.id }}] 작성일: {{ post.published_date }}</p>
-            </div>
+            {% if post.published_date %}
+                <div class="date">
+                    <p>[{{ post.pk }}] 작성일: {{ post.published_date }}</p>
+                </div>
+            {% endif %}
             <h1><a href="{% url 'post_detail' post.pk %}">{{ post.title }}</a></h1>
             <p>{{ post.text|linebreaksbr }}</p>
         </div>
