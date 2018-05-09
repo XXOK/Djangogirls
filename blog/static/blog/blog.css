@@ -4,9 +4,15 @@
     padding: 20px 20px 20px 40px;
 }
 
-.page-header h1, .page-header h1 a, .page-header h1 a:visited, .page-header h1 a:active {
+.page-header h1, .page-header h1 a, .page-header h1 a:visited, .page-header h1 a:active{
     color: #ffffff;
     font-size: 36pt;
+    text-decoration: none;
+}
+
+.form-button{
+    color: #ffffff;
+    font-size: 10px;
     text-decoration: none;
 }
 

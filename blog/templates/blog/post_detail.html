@@ -3,9 +3,9 @@
 {% block content %}
     <div class="post">
         <div class="date">
-            <p>published: {{ detail.published_date }}</p>
+            <p>[{{ detail.pk }}] 작성일: {{ detail.published_date }}</p>
         </div>
-        <h1><a href="">{{ detail.title }}</a></h1>
+        <h1>{{ detail.title }}</h1>
         <p>{{ detail.text|linebreaksbr }}</p>
     </div>
 {% endblock %}
