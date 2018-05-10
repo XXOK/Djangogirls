@@ -10,11 +10,11 @@ def post_list(request):
     # qs = qs.order_by('published_date')
 
     return render(request, 'blog/post_list.html', {
-        'post_list': qs,
+        'qs': qs,
     })
 
-def post_detail(request, detail_pk):
-    post = get_object_or_404(Post, pk=detail_pk)
+def post_detail(request, pk):
+    post = get_object_or_404(Post, pk=pk)
     return render(request, 'blog/post_detail.html', {
         'post': post,
     })
@@ -26,7 +26,7 @@ def post_new(request):
         form = PostForm(request.POST, request.FILES)
         if form.is_valid():
             post = form.save(commit=False)
-            post.author = request.user
+            # post.author = request.user
             post.published_date = timezone.now()
             post.save()
             # return redirect('post_detail', pk=post.pk)
@@ -38,16 +38,16 @@ def post_new(request):
         'form': form,
     })
 
-def post_edit(request, detail_pk):
+def post_edit(request, pk):
     # instance 란 행동의 대상을 지정해주는 부분
 
-    post = get_object_or_404(Post, pk=detail_pk)
+    post = get_object_or_404(Post, pk=pk)
 
     if request.method == 'POST':
         form = PostForm(request.POST, request.FILES, instance=post)
         if form.is_valid():
             post = form.save(commit=False)
-            post.author = request.user
+            # post.author = request.user
             post.published_date = timezone.now()
             post.save()
             # return redirect('post_detail', pk=post.pk)
