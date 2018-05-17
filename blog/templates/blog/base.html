@@ -5,18 +5,21 @@
         <meta charset="utf-8"/>
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-        <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Do+Hyeon" rel="stylesheet" type="text/css">
         <link rel="stylesheet" href="{% static 'blog/blog.css' %}"/>
         <link rel="stylesheet" href="{% static 'blog/post.css' %}">
-        <title>잡소리</title>
+        <title>BLOG</title>
 
     </head>
     <body>
         <div class="page-header">
-            <a href="{% url 'post_new' %}" class="top-menu">
-                <span class="glyphicon glyphicon-plus"></span>
-            </a>
-            <h1><a href="{% url 'post_list' %}">잡소리</a></h1>
+            <!--<a href="{% url 'post_new' %}" class="top-menu">-->
+                <!--<span class="glyphicon glyphicon-plus" co></span>-->
+            <!--</a>-->
+            <!--<h1><a href="{% url 'post_list' %}">G_COXON</a></h1>-->
+            <div class="logo">
+                <a href="{% url 'post_new' %}"><img src="{% static 'img/logo.png' %}"/> </a>
+            </div>
         </div>
 
         <div class="content container">
