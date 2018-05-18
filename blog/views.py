@@ -5,7 +5,7 @@ from .forms import PostForm
 
 
 def post_list(request):
-    qs = Post.objects.all()
+    qs = Post.objects.all().order_by('-created_date')
     # qs = qs.filter(published_date__lte=timezone.now()).order_by('published_date')
     # qs = qs.order_by('published_date')
 
@@ -27,7 +27,6 @@ def post_new(request):
         if form.is_valid():
             post = form.save(commit=False)
             # post.author = request.user
-            post.published_date = timezone.now()
             post.save()
             # return redirect('post_detail', pk=post.pk)
             return redirect('post_list')

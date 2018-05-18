@@ -2,11 +2,13 @@
 
 {% block content %}
     <div class="post">
-        {% if post.published_date %}
-            <div class="date">
-                <p>[{{ post.pk }}] 작성일: {{ post.published_date }}</p>
-            </div>
-        {% endif %}
+        <div class="date">
+            {% if post.published_date %}
+                <p>작성일: {{ post.published_date }} (수정됨)</p>
+            {% else %}
+                <p>작성일: {{ post.created_date }}</p>
+            {% endif %}
+        </div>
         <a class="btn btn-default" href="{% url 'post_edit' post.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
         <h1>{{ post.title }}</h1>
         <p>{{ post.text|linebreaksbr }}</p>

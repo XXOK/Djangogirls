@@ -13,12 +13,13 @@
     </head>
     <body>
         <div class="page-header">
-            <!--<a href="{% url 'post_new' %}" class="top-menu">-->
-                <!--<span class="glyphicon glyphicon-plus" co></span>-->
-            <!--</a>-->
-            <!--<h1><a href="{% url 'post_list' %}">G_COXON</a></h1>-->
-            <div class="logo">
-                <a href="{% url 'post_new' %}"><img src="{% static 'img/logo.png' %}"/> </a>
+            <div class="area_logo">
+                <a href="{% url 'post_list' %}">
+                    <img class="logo" src="{% static 'img/logo.png' %}"/>
+                </a>
+                <a href="{% url 'post_new' %}" class="top-menu">
+                    <span class="glyphicon glyphicon-plus"></span>
+                </a>
             </div>
         </div>
 

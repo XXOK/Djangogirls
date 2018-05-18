@@ -1,10 +1,22 @@
 .page-header {
     margin-top: 0;
+    width: 100%;
     padding: 20px 20px 20px 20px;
+    position: fixed;
+    background-color: #FFFFFF;
+    z-index: 10;
+}
+
+.area_logo {
+    text-align: center;
 }
 
 .logo {
-    text-align: center;
+    width: 200px;
+}
+
+.glyphicon-plus {
+    color: gray;
 }
 
 .form-button{
@@ -15,6 +27,11 @@
 
 .content {
     margin-left: 40px;
+
+}
+
+.row {
+    margin-top: 150px;
 }
 
 h1, h2, h3, h4, p {
