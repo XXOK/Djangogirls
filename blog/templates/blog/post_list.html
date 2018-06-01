@@ -10,7 +10,7 @@
                     <p>작성일: {{ post.created_date }}</p>
                 {% endif %}
             </div>
-            <h1><a href="{% url 'post_detail' post.pk %}">{{ post.title }}</a></h1>
+            <h1><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h1>
             <p>{{ post.text|linebreaksbr }}</p>
         </div>
     {% endfor %}
