@@ -48,6 +48,7 @@ h1, h2, h3, h4, p {
 
 .post-form textarea, .post-form input {
     width: 100%;
+    resize: none;
 }
 
 .top-menu, .top-menu:hover, .top-menu:visited {
@@ -59,6 +60,11 @@ h1, h2, h3, h4, p {
 
 .post {
     margin-bottom: 70px;
+}
+
+
+.post p {
+    word-break: break-all;
 }
 
 .post h1 a, .post h1 a:visited,
