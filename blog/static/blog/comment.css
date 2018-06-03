@@ -1,0 +1,9 @@
+.comment-form textarea {
+    width: 100%;
+    resize: none;
+
+}
+
+.errorlist, .comment-form label{
+    display: none;
+}
