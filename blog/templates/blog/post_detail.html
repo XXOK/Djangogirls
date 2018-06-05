@@ -13,7 +13,7 @@
     <!--<a class="btn btn-default" href="{% url 'post_edit' post.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>-->
     <h1>{{ post.title }}</h1>
     <p id="urlize-c">{{ post.text }}</p>
-    <div id="urlize-r" style="background:#ffe;border:2px solid #eca;padding:18px;border-radius:6px;word-wrap:break-word;display:none;"></div>
+    <div id="urlize-r" style="font-size:15px;"></div>
     <script src="{% static 'js/urlize.js' %}" type="text/javascript"></script>
 </div>
 
@@ -40,7 +40,7 @@
     {% for i in post.comment_set.all %}
     <ul>
         <li>
-            <p>{{ i.comment }}</p>
+            <p>{{ i.comment | urlize }}</p>
             <small>{{i.author}} | {{ i.created_at }}</small>
         </li>
     </ul>

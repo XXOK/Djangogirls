@@ -21,7 +21,11 @@
     function replaceURLWithHTMLLinks(text, blank) {
         var exp = /(\b(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/|www\.)[-A-Z0-9+&@#\/%?=~_|!:,.;*]*[-A-Z0-9+&@#\/%=~_|])/ig;
         var attrs = blank ? "target='_blank' rel='noopener noreferrer' " : "";
-        return text.replace(exp,"<a " + attrs + "href='$1'>$1</a>");
+        console.log(text)
+        if text.startswith('www.'){
+            return text.replace(exp,"<a " + attrs + "href='https://$1'>$1</a>");
+        }
+        else{return text.replace(exp,"<a " + attrs + "href='$1'>$1</a>");}
     }
     /* **/
 
@@ -45,11 +49,8 @@
 //    $result.show();
 
     $(document).ready(function() {
-        console.log("!!!");
         var $text = $('#urlize-c'), $result = $('#urlize-r');
-        console.log($text)
         var val = $text.val(), text = urlize($text.html());
-        console.log(text);
         $result.html(text)[text ? 'show' : 'hide']();
     })
 
