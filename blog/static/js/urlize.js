@@ -19,14 +19,36 @@
      *  (added blank option)
      */
     function replaceURLWithHTMLLinks(text, blank) {
-        var exp = /(\b(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/|www\.)[-A-Z0-9+&@#\/%?=~_|!:,.;*]*[-A-Z0-9+&@#\/%=~_|])/ig;
+//        var exp = /((https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig; //   보수적 방법
+        var exp = /((http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/|www\.)[-A-Z0-9+&@#\/%?=~_|!:,.;*]*[-A-Z0-9+&@#\/%=~_|])/ig;
+        var foo = /([^http:/]+(www.)[-A-Z0-9+&@#\/%?=~_|!:,.;*]*[-A-Z0-9+&@#\/%=~_|])/ig;
+        var foo2 = /([^ㄱ-힣]+(http:\/\/|https:\/\/)[-A-Z0-9+&@#\/%?=~_|!:,.;*]*[-A-Z0-9+&@#\/%=~_|])/ig;
+        var foo3 = /([^a-zA-z]+(http:\/\/|https:\/\/)[-A-Z0-9+&@#\/%?=~_|!:,.;*]*[-A-Z0-9+&@#\/%=~_|])/ig;
+        var foo4 = /(([+&@#\%?=~_|!,;*])[-A-Z0-9+&@#\/%?=~_|!:,.;*]*[-A-Z0-9+&@#\/%=~_|])/ig;
         var attrs = blank ? "target='_blank' rel='noopener noreferrer' " : "";
-        console.log(text)
-        if text.startswith('www.'){
-            return text.replace(exp,"<a " + attrs + "href='https://$1'>$1</a>");
+        console.log(text.match(foo4))
+        if ( text.startsWith('www.') ) {
+        return text.replace(exp,"<a " + attrs + "href='https://$1'>$1</a>");
         }
-        else{return text.replace(exp,"<a " + attrs + "href='$1'>$1</a>");}
+        else {
+                if ( text.match(foo) ) {
+                    return text.replace(exp,"<a " + attrs + "href='https://$1'>$1</a>");
+                }
+                if ( text.match(foo2) ) {
+                    return text.replace(exp,"<a " + attrs + "href='$1'>$1</a>");
+                }
+                if ( text.match(foo3) ) {
+                    return text.replace(exp,"<a " + attrs + "href='$1'>$1</a>");
+                }
+                if ( text.match(foo4) ) {
+                    return text.replace(exp,"<a " + attrs + "href='https://$1'>$1</a>");
+                }
+                else {
+                    return text.replace(exp,"<a " + attrs + "href='$1'>$1</a>");
+                }
+        }
     }
+
     /* **/
 
     function urlize(text) {
