@@ -59,12 +59,13 @@ h1, h2, h3, h4, p {
 }
 
 .post {
-    margin-bottom: 70px;
+    margin-bottom: 30px;
 }
 
 
-.post p {
+.post #urlize-c {
     word-break: break-all;
+    display: none;
 }
 
 .post h1 a, .post h1 a:visited,

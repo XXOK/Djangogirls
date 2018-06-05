@@ -1,52 +1,58 @@
 {% extends 'blog/base.html' %}
+{% load staticfiles %}
 
 {% block content %}
-    <div class="post">
-        <div class="date">
-            {% if post.published_at %}
-                <p>{{ post.author }} | {{ post.published_at }} (수정됨)</p>
-            {% else %}
-                <p>{{ post.author }} | {{ post.created_at }}</p>
-            {% endif %}
-        </div>
-        <!--<a class="btn btn-default" href="{% url 'post_edit' post.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>-->
-        <h1>{{ post.title }}</h1>
-        <p>{{ post.text }}</p>
-    </div>
-
-    <hr/>
-
-    <div class="foo">
-        <h4>익명 댓글 남기기</h4>
-        <form class="comment-form" action="{% url 'post_detail' post.pk %}" method="post">
-            {% csrf_token %}
-            {{ comment_form.as_p }}
-            <div class="sub-button">
-                <div class="save-button">
-                    <button type="submit" class="save btn btn-primary">작성</button>
-                </div>
-            </div>
-        </form>
-    </div>
-
-    <hr/>
-
-    <div class="comment">
-        <h4>남겨진 댓글 ({{ post.comment_set.all.count }}개) </h4>
-        {% if post.comment_set.all %}
-            {% for i in post.comment_set.all %}
-                <ul>
-                    <li>
-                        <p>{{ i.comment }}</p>
-                        <small>{{i.author}} | {{ i.created_at }}</small>
-                    </li>
-                </ul>
-            {% endfor %}
+<div class="post">
+    <div class="date">
+        {% if post.published_at %}
+        <p>{{ post.author }} | {{ post.published_at }} (수정됨)</p>
         {% else %}
-        <strong>등록된 댓글이 없습니다.</strong>
+        <p>{{ post.author }} | {{ post.created_at }}</p>
         {% endif %}
     </div>
+    <!--<a class="btn btn-default" href="{% url 'post_edit' post.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>-->
+    <h1>{{ post.title }}</h1>
+    <p id="urlize-c">{{ post.text }}</p>
+    <div id="urlize-r" style="background:#ffe;border:2px solid #eca;padding:18px;border-radius:6px;word-wrap:break-word;display:none;"></div>
+    <script src="{% static 'js/urlize.js' %}" type="text/javascript"></script>
+</div>
 
-    <hr/>
+<hr/>
 
+<div class="foo">
+    <h4>익명 댓글 남기기</h4>
+    <form class="comment-form" action="{% url 'post_detail' post.pk %}" method="post">
+        {% csrf_token %}
+        {{ comment_form.as_p }}
+        <div class="sub-button">
+            <div class="save-button">
+                <button type="submit" class="save btn btn-primary">작성</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<hr/>
+
+<div class="comment">
+    <h4>남겨진 댓글 ({{ post.comment_set.all.count }}개) </h4>
+    {% if post.comment_set.all %}
+    {% for i in post.comment_set.all %}
+    <ul>
+        <li>
+            <p>{{ i.comment }}</p>
+            <small>{{i.author}} | {{ i.created_at }}</small>
+        </li>
+    </ul>
+    {% endfor %}
+    {% else %}
+    <strong>등록된 댓글이 없습니다.</strong>
+    {% endif %}
+</div>
+
+<hr/>
+
+{% endblock %}
+
+{% block js %}
 {% endblock %}

@@ -1,18 +1,24 @@
 {% extends 'blog/base.html' %}
+{% load staticfiles %}
 
 {% block content %}
-    {% for post in qs %}
-        <div class="post">
-            <div class="date">
-                {% if post.published_at %}
-                    <p>{{ post.author }} | {{ post.published_at }} (수정됨)</p>
-                {% else %}
-                    <p>{{ post.author }} | {{ post.created_at }}</p>
-                {% endif %}
-            </div>
-            <h1><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h1>
-            <p>{{ post.text }}</p>
-        </div>
-        <hr/>
-    {% endfor %}
+{% for post in qs %}
+<div class="post">
+    <div class="date">
+        {% if post.published_at %}
+        <p>{{ post.author }} | {{ post.published_at }} (수정됨)</p>
+        {% else %}
+        <p>{{ post.author }} | {{ post.created_at }}</p>
+        {% endif %}
+    </div>
+    <h1><a href="{{ post.get_absolute_url }}">{{ post.title }}</a><small> [{{ post.comment_set.all.count }}]</small></h1>
+    <!--<p id="urlize-c">{{ post.text }}</p>-->
+    <!--<div id="urlize-r" style="background:#ffe;border:2px solid #eca;padding:18px;border-radius:6px;word-wrap:break-word;display:none;"></div>-->
+    <!--<script src="{% static 'js/urlize.js' %}" type="text/javascript"></script>-->
+    <hr/>
+</div>
+{% endfor %}
+{% endblock %}
+
+{% block js %}
 {% endblock %}

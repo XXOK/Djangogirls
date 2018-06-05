@@ -1,6 +1,7 @@
-from django.shortcuts import render, get_object_or_404, redirect, reverse
+from django.shortcuts import render, get_object_or_404, redirect
+from django.template.defaultfilters import register
 from django.utils import timezone
-from .models import Post, Comment
+from .models import Post
 from .forms import PostForm, CommentForm
 
 
@@ -16,6 +17,7 @@ def post_list(request):
 def post_detail(request, pk):
     post = get_object_or_404(Post, pk=pk)
     comment_form = CommentForm(request.POST)
+
     if request.method == 'POST':
         if comment_form.is_valid():
             comment = comment_form.save(commit=False)
@@ -68,3 +70,27 @@ def post_edit(request, pk):
     return render(request, 'blog/post_form.html', {
         'form': form,
     })
+
+
+# def comment_new(request, pk):
+#     comment_form = CommentForm(request.POST)
+#     if request.method == 'POST':
+#         if comment_form.is_valid():
+#             comment = comment_form.save(commit=False)
+#             comment.post = Post.objects.get(pk=pk)
+#             comment.save()
+#             return redirect('post_detail', pk)
+#         else:
+#             comment_form = CommentForm(request.POST)
+#
+#     return render(request, 'blog/post_detail.html', {
+#         'comment_form': comment_form,
+#     })
+
+
+def url_target_blank(text):
+    return text.replace('<a ', '<a target="_blank" autoescape="true" autoescape="True" ')
+url_target_blank = register.filter(url_target_blank, is_safe = True)
+
+# regex = re.compile(r'^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$')
+# result = regex.match(a)
