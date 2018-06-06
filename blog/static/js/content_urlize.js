@@ -26,8 +26,9 @@
         var foo2 = /([^ㄱ-힣]+(http:\/\/|https:\/\/)[-A-Z0-9+&@#\/%?=~_|!:,.;*]*[-A-Z0-9+&@#\/%=~_|])/ig; //    ex: testhttps://www.naver.com
         var foo3 = /([^a-zA-z]+(http:\/\/https:\/\/)[-A-Z0-9+&@#\/%?=~_|!:,.;*]*[-A-Z0-9+&@#\/%=~_|])/ig; //    ex: 테스트https://www.naver.com
         var foo4 = /(([+&@#\%?=~_|!,;*])[-A-Z0-9+&@#\/%?=~_|!:,.;*]*[-A-Z0-9+&@#\/%=~_|])/ig; //    ex: test!!https://www.naver.com
+
         var attrs = blank ? "target='_blank' rel='noopener noreferrer' " : "";
-        console.log(text.match(foo3))
+
         if ( text.startsWith('www.') ) {
         return text.replace(exp,"<a " + attrs + "href='https://$1'>$1</a>");
         }
@@ -63,26 +64,11 @@
         return lines.join('<br>');
     }
 
-//    var $text = $('#urlize-c'), $result = $('#urlize-r');
-//    $result.hide();
-//
-//    $text.on('keyup change', function() {
-//        var val = $text.val(),
-//            text = urlize($text.val());
-//        $result.html(text)[text ? 'show' : 'hide']();
-//    }).trigger('change');
-//
-//    $result.show();
 
     $(document).ready(function() {
-        var $text = $('#urlize-c'), $result = $('#urlize-r');
+        var $text = $('#contents-in'), $result = $('#contents-out');
         var val = $text.val(), text = urlize($text.html());
         $result.html(text)[text ? 'show' : 'hide']();
     })
 
 })(document, jQuery);
-//var array = ['포도', '사과', '바나나', '망고'];
-//
-//for(var i in array) {
-//    alert(array[i]);
-//}

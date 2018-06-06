@@ -12,9 +12,9 @@
     </div>
     <!--<a class="btn btn-default" href="{% url 'post_edit' post.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>-->
     <h1>{{ post.title }}</h1>
-    <p id="urlize-c">{{ post.text }}</p>
-    <div id="urlize-r" style="font-size:15px;"></div>
-    <script src="{% static 'js/urlize.js' %}" type="text/javascript"></script>
+    <p id="contents-in">{{ post.text }}</p>
+    <div id="contents-out" style="font-size:15px;"></div>
+    <script src="{% static 'js/content_urlize.js' %}" type="text/javascript"></script>
 </div>
 
 <hr/>
@@ -40,7 +40,10 @@
     {% for i in post.comment_set.all %}
     <ul>
         <li>
-            <p>{{ i.comment | urlize }}</p>
+            <!--<p>{{ i.comment | urlize }}</p>-->
+            <p class="comments-in{{ forloop.counter0 }}">{{ i.comment }}</p>
+            <div class="comments-out{{ forloop.counter0 }}" style="font-size:15px;"></div>
+            <script src="{% static 'js/comment_urlize.js' %}" type="text/javascript"></script>
             <small>{{i.author}} | {{ i.created_at }}</small>
         </li>
     </ul>
