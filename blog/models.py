@@ -5,10 +5,17 @@ from django.shortcuts import reverse
 
 
 def get_random_name():
-    foo = [
-        '호날두', '메시', '직방', '다방', '호갱노노', '네이버 부동산', '알레스카 김상덕씨', '엄마도 흒댼이야',
+    foo1 = [
+        '배고픈', '피곤한', '날고싶은', '발정난', '화가난', '허리아픈', '불쌍한', '안심중개사', '헛걸음보상제', '욕구불만'
     ]
-    return random.choice(foo)
+    set_foo1 = random.choice(foo1)
+
+    foo2 = [
+        'SC', 'YG', '직방', '다방', '네이버부동산', 'ZIGBANG', '최준호', '이의석', '강연신', '박성환',
+    ]
+    set_foo2 = random.choice(foo2)
+
+    return set_foo1 + ' ' + set_foo2
 
 
 class Post(models.Model):
