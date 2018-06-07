@@ -64,20 +64,11 @@
         return lines.join('<br>');
     }
 
-    $(document).ready(function() {
-        var $text = $('.comments-in'+0), $result = $('.comments-out'+0);
-        var val = $text.val(), text = urlize($text.html());
-        $result.html(text)[text ? 'show' : 'hide']();
-    })
 
     $(document).ready(function() {
-        var $text = $('.comments-in'+1), $result = $('.comments-out'+1);
+        var $text = $('#contents-in'), $result = $('#contents-out');
         var val = $text.val(), text = urlize($text.html());
         $result.html(text)[text ? 'show' : 'hide']();
-
-//        var $text = $('#comments-in0'), $result = $('#comments-out0');
-//        var val = $text.val(), text = urlize($text.html());
-//        $result.html(text)[text ? 'show' : 'hide']();
     })
 
 })(document, jQuery);

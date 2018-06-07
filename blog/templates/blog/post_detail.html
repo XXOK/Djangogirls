@@ -12,9 +12,8 @@
     </div>
     <!--<a class="btn btn-default" href="{% url 'post_edit' post.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>-->
     <h1>{{ post.title }}</h1>
-    <p id="contents-in">{{ post.text }}</p>
-    <div id="contents-out" style="font-size:15px;"></div>
-    <script src="{% static 'js/content_urlize.js' %}" type="text/javascript"></script>
+    <div id="contents-in">{{ post.text }}</div>
+    <div id="contents-out"></div>
 </div>
 
 <hr/>
@@ -35,19 +34,17 @@
 <hr/>
 
 <div class="comment">
-    <h4>남겨진 댓글 ({{ post.comment_set.all.count }}개) </h4>
+    <h4>남겨진 댓글 ({{ post.comment_set.all.count }}개)</h4>
     {% if post.comment_set.all %}
     {% for i in post.comment_set.all %}
     <ul>
         <li>
-            <!--<p>{{ i.comment | urlize }}</p>-->
-            <p class="comments-in{{ forloop.counter0 }}">{{ i.comment }}</p>
-            <div class="comments-out{{ forloop.counter0 }}" style="font-size:15px;"></div>
-            <script src="{% static 'js/comment_urlize.js' %}" type="text/javascript"></script>
+            <p>{{ i.comment | urlize }}</p>
             <small>{{i.author}} | {{ i.created_at }}</small>
         </li>
     </ul>
     {% endfor %}
+
     {% else %}
     <strong>등록된 댓글이 없습니다.</strong>
     {% endif %}
@@ -55,7 +52,4 @@
 
 <hr/>
 
-{% endblock %}
-
-{% block js %}
 {% endblock %}

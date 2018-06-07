@@ -34,7 +34,7 @@
     margin-top: 150px;
 }
 
-h1, h2, h3, h4, p {
+h1, h2, h3, h4, p, .post #contents-out {
     font-family: 'Do Hyeon', sans-serif;
 }
 
@@ -62,11 +62,23 @@ h1, h2, h3, h4, p {
     margin-bottom: 30px;
 }
 
+.post h1{
+    margin-bottom: 20px;
+}
 
-.post #urlize-c {
+
+.post #contents-in {
     word-break: break-all;
     display: none;
 }
+
+
+.post #contents-out {
+    word-break: break-all;
+    font-size: 15px;
+
+}
+
 
 .post h1 a, .post h1 a:visited,
 .post h2 a, .post h2 a:visited {

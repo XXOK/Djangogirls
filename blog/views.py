@@ -91,6 +91,3 @@ def post_edit(request, pk):
 def url_target_blank(text):
     return text.replace('<a ', '<a target="_blank" autoescape="true" autoescape="True" ')
 url_target_blank = register.filter(url_target_blank, is_safe = True)
-
-# regex = re.compile(r'^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$')
-# result = regex.match(a)
