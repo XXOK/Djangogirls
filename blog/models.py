@@ -40,9 +40,12 @@ def get_random_name():
 
 
 class Post(models.Model):
-    author = models.CharField(max_length=20, default=get_random_name)
-    title = models.CharField(max_length=30, verbose_name='제목', help_text='최대 30 내외')
-    text = models.TextField(max_length=300, blank=True, verbose_name='내용', help_text='최대 300자 내외')
+    author = models.CharField(
+        max_length=20, default=get_random_name)
+    title = models.CharField(
+        max_length=30, verbose_name='제목', help_text='최대 30 내외')
+    text = models.TextField(
+        max_length=300, verbose_name='내용', help_text='최대 300자 내외', blank=True, null=True)
     created_at = models.DateTimeField(
             default=timezone.now)
     published_at = models.DateTimeField(
