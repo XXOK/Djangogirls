@@ -46,6 +46,9 @@ class Post(models.Model):
         max_length=30, verbose_name='제목', help_text='최대 30 내외')
     text = models.TextField(
         max_length=300, verbose_name='내용', help_text='최대 300자 내외', blank=True, null=True)
+    photo = models.ImageField(
+        max_length=300, verbose_name='이미지', help_text='JPG, PNG 등 이미지 파일을 업로드해주세요', upload_to='upload_img', blank=True
+    )
     created_at = models.DateTimeField(
             default=timezone.now)
     published_at = models.DateTimeField(

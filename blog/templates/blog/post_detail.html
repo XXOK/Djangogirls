@@ -1,5 +1,4 @@
 {% extends 'blog/base.html' %}
-{% load staticfiles %}
 
 {% block content %}
 <div class="post">
@@ -10,8 +9,15 @@
         <p>{{ post.author }} | {{ post.created_at }}</p>
         {% endif %}
     </div>
-    <!--<a class="btn btn-default" href="{% url 'post_edit' post.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>-->
+
     <h1>{{ post.title }}</h1>
+
+    {% if post.photo %}
+        <div class="post-photo">
+            <img src="{{ post.photo.url }}" style="max-width:100%"/>
+        </div>
+    {% endif %}
+
     <div id="contents-in">{{ post.text }}</div>
     <div id="contents-out"></div>
 </div>
