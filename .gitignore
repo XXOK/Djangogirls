@@ -60,3 +60,4 @@ fabric.properties
 .idea/sonarlint
 
 .config_secret
+.config
