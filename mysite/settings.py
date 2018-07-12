@@ -26,7 +26,7 @@ CONFIG_SETTINGS_COMMON_FILE = os.path.join(CONFIG_SECRET_DIR, 'settings_common.j
 SECRET_KEY = 'enk0%#^r**3^(plyovid8pm1bsr*c+!6ng+l#icf47r71pjh-6'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -81,11 +81,11 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'HOST': '',
-        'PORT': '',
-        'NAME': '',
-        'USER': '',
-        'PASSWORD': '',
+        'HOST': 'che1-db.csntyjgtz87g.ap-northeast-2.rds.amazonaws.com',
+        'PORT': '5432',
+        'NAME': 'deploy1',
+        'USER': 'Che1',
+        'PASSWORD': 'suks7566!',
     }
 }
 
@@ -129,14 +129,19 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
+# local 환경 static 파일, DEBUG = True 필요
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'mysite', 'static'),
+]
+
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # S3 Storage
-DEFAULT_FILE_STORAGE = 'mysite.storages.MediaStorage'
-STATICFILES_STORAGE = 'mysite.storages.StaticStorage'
-MEDIAFILES_LOCATION = 'media'
-STATICFILES_LOCATION = 'static'
+# DEFAULT_FILE_STORAGE = 'mysite.storages.MediaStorage'
+# STATICFILES_STORAGE = 'mysite.storages.StaticStorage'
+# MEDIAFILES_LOCATION = 'media'
+# STATICFILES_LOCATION = 'static'
 
 # AWS Access
 print(CONFIG_SETTINGS_COMMON_FILE)

@@ -12,27 +12,36 @@ def get_random_name():
         '화가난',
         '허리아픈',
         '불쌍한',
-        '안심중개사',
-        '헛걸음보상제',
-        '충성스런',
-        '가슴속에사직서를품은',
-        '모래반지빵야빵야',
-        '요실금걸린',
+        '배부른',
+        '활기찬',
+        '축구선수',
+        '농구선수',
+        '야구선수',
+        '배구선수',
+        '요리왕',
+        '설명충',
+        '가능충',
     ]
     set_foo1 = random.choice(foo1)
 
     foo2 = [
-        'SC',
-        'YG',
-        '직방',
-        '다방',
-        '네이버부동산',
-        'ZIGBANG',
-        '최준호',
-        '이의석',
-        '강연신',
-        '박성환',
-        '강연신발닦개',
+        '이무송',
+        '홍준표',
+        '단호박',
+        '엉덩이를흔드록바',
+        '우리엄마',
+        '김인직',
+        '김행직',
+        '김참직',
+        '감스트',
+        '이점덕',
+        '김순덕',
+        '김말자',
+        '박막례',
+        '이춘자',
+        '박술녀',
+        '표인봉',
+        '고인물',
     ]
     set_foo2 = random.choice(foo2)
 
@@ -43,11 +52,11 @@ class Post(models.Model):
     author = models.CharField(
         max_length=20, default=get_random_name)
     title = models.CharField(
-        max_length=30, verbose_name='제목', help_text='최대 30 내외')
+        max_length=30, verbose_name='제목')
     text = models.TextField(
-        max_length=300, verbose_name='내용', help_text='최대 300자 내외', blank=True, null=True)
+        max_length=300, verbose_name='내용', blank=True, null=True)
     photo = models.ImageField(
-        max_length=300, verbose_name='이미지', help_text='JPG, PNG 등 이미지 파일을 업로드해주세요', upload_to='upload_img', blank=True
+        max_length=300, verbose_name='이미지', upload_to='upload_img', blank=True
     )
     created_at = models.DateTimeField(
             default=timezone.now)
@@ -71,5 +80,5 @@ class Post(models.Model):
 class Comment(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
     author = models.CharField(max_length=100, default=get_random_name)
-    comment = models.TextField(max_length=100, help_text='최대 100자 내외')
+    comment = models.TextField(max_length=100)
     created_at = models.DateTimeField(auto_now_add=True)

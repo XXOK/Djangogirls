@@ -6,6 +6,10 @@ class PostForm(forms.ModelForm):
     class Meta:
         model = Post
         fields = ['title', 'text', 'photo']
+        widgets = {
+            'text': forms.Textarea(attrs={'rows': 5}),
+            'photo': forms.FileInput(attrs={'style': 'font-size: 11'}),
+        }
 
 
 class CommentForm(forms.ModelForm):

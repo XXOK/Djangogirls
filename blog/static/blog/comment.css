@@ -4,6 +4,26 @@
 
 }
 
+.comment-header {
+    display: flex;
+    margin-bottom: 5px;
+}
+
+.foo {
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
+.save-button {
+    margin-left: 565px;
+    height: 42px;
+}
+
+.comment {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
 .errorlist, .comment-form label{
     display: none;
 }
