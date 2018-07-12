@@ -1,17 +1,21 @@
 {% load static %}
-
 <html>
     <head>
         <meta charset="utf-8"/>
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
         <link href="https://fonts.googleapis.com/css?family=Do+Hyeon" rel="stylesheet" type="text/css">
+        <script defer src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script>
+        <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}">
         <link rel="stylesheet" href="{% static 'blog/blog.css' %}"/>
         <link rel="stylesheet" href="{% static 'blog/post.css' %}">
         <link rel="stylesheet" href="{% static 'blog/comment.css' %}">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
         <script src="{% static 'js/content_urlize.js' %}" type="text/javascript"></script>
-        <title>직방 대나무숲</title>
+        <meta property="og:title" content="상상의 박나래를 펼쳐라">
+        <meta property="og:image" content="{% static 'img/logo-share.png' %}">
+        <meta property="og:description" content="익명의 유저들이 자유롭게 소통하는 공간입니다.">
+        <title>상상의 박나래를 펼쳐라</title>
     </head>
     <body>
         <div class="page-header">
@@ -20,8 +24,18 @@
                     <img class="logo" src="{% static 'img/logo.png' %}"/>
                 </a>
                 <a href="{% url 'post_new' %}" class="top-menu">
-                    <span class="glyphicon glyphicon-plus"></span>
+                    <div class="posting">
+                        <i class="far fa-edit" style="width:30px;"></i>
+                    </div>
                 </a>
+            </div>
+        </div>
+        <div class="page-sub-header">
+            <div class="info">
+                <i class="fas fa-info-circle"></i>
+            </div>
+            <div class="info-text">
+                <small>익명의 유저들이 자유롭게 소통하는 공간입니다.</small>
             </div>
         </div>
         {% block js %}

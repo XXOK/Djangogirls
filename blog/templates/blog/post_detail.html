@@ -6,7 +6,7 @@
         {% if post.published_at %}
         <p>{{ post.author }} | {{ post.published_at }} (수정됨)</p>
         {% else %}
-        <p>{{ post.author }} | {{ post.created_at }}</p>
+        <p>{{ post.author }} | {{ post.created_at | date:"Y.m.d" }}</p>
         {% endif %}
     </div>
 
@@ -25,13 +25,13 @@
 <hr/>
 
 <div class="foo">
-    <h4>익명 댓글 남기기</h4>
+    <h4>댓글 남기기</h4>
     <form class="comment-form" action="{% url 'post_detail' post.pk %}" method="post">
         {% csrf_token %}
-        {{ comment_form.as_p }}
-        <div class="sub-button">
-            <div class="save-button">
-                <button type="submit" class="save btn btn-primary">작성</button>
+        <div class="comment-header">
+            {{ comment_form.as_table }}
+            <div class="sub-button">
+                <button type="submit" class="btn btn-primary btn-sm" id="create-button">작성하기</button>
             </div>
         </div>
     </form>
@@ -46,13 +46,13 @@
     <ul>
         <li>
             <p>{{ i.comment | urlize }}</p>
-            <small>{{i.author}} | {{ i.created_at }}</small>
+            <small>{{i.author}} | {{ i.created_at | date:"Y.m.d" }}</small>
         </li>
     </ul>
     {% endfor %}
 
     {% else %}
-    <strong>등록된 댓글이 없습니다.</strong>
+    <small>등록된 댓글이 없습니다.</small>
     {% endif %}
 </div>
 

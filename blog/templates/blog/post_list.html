@@ -6,9 +6,9 @@
 <div class="post">
     <div class="date">
         {% if post.published_at %}
-        <p>{{ post.author }} | {{ post.published_at }} (수정됨)</p>
+        <p>{{ post.author }} | {{ post.published_at | date:"Y/m/d" }} (수정됨)</p>
         {% else %}
-        <p>{{ post.author }} | {{ post.created_at }}</p>
+        <p>{{ post.author }} | {{ post.created_at | date:"Y.m.d" }}</p>
         {% endif %}
     </div>
     <h1><a href="{{ post.get_absolute_url }}">{{ post.title }}</a><small> [{{ post.comment_set.all.count }}]</small></h1>

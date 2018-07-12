@@ -4,6 +4,29 @@
 
 }
 
+.comment-header {
+    display: flex;
+    margin-bottom: 5px;
+}
+
+.foo {
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
+.sub-button {
+    margin-left: 10px;
+}
+
+#create-button {
+    height: 78px;
+}
+
+.comment {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
 .errorlist, .comment-form label{
     display: none;
 }
