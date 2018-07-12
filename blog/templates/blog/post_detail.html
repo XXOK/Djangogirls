@@ -25,15 +25,15 @@
 <hr/>
 
 <div class="foo">
+    <h4>익명 댓글 남기기</h4>
     <form class="comment-form" action="{% url 'post_detail' post.pk %}" method="post">
         {% csrf_token %}
-        <div class="comment-header">
-            <h4>댓글 남기기</h4>
+        {{ comment_form.as_p }}
+        <div class="sub-button">
             <div class="save-button">
-                <button type="submit" class="btn btn-primary btn-sm">작성하기</button>
+                <button type="submit" class="save btn btn-primary">작성</button>
             </div>
         </div>
-        {{ comment_form.as_table }}
     </form>
 </div>
 

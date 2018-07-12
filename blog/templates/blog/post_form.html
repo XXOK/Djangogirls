@@ -1,18 +1,18 @@
 {% extends 'blog/base.html' %}
 
 {% block content %}
-<h2>바르고 고운말</h2>
+<h2>바르고 고운말을 쓰자</h2>
 <form class="post-form" method="POST" enctype="multipart/form-data" autocomplete="off">
     {% csrf_token %}
     {{ form.as_p }}
     <div class="sub-button">
         <div class="cancle-button">
             <a href="{% url 'post_list' %}">
-                <button type="button" class="btn btn-outline-secondary">취소하기</button>
+                <button type="button" class="cancle btn btn-default">취소하기</button>
             </a>
         </div>
         <div class="save-button">
-            <button type="submit" class="btn btn-outline-primary">저장하기</button>
+            <button type="submit" class="save btn btn-primary">저장하기</button>
         </div>
     </div>
 </form>
