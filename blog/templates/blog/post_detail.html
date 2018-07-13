@@ -42,7 +42,7 @@
 <div class="comment">
     <h4>남겨진 댓글 ({{ post.comment_set.all.count }}개)</h4>
     {% if post.comment_set.all %}
-    {% for i in post.comment_set.all %}
+    {% for i in comment %}
     <ul>
         <li>
             <p>{{ i.comment | urlize }}</p>
