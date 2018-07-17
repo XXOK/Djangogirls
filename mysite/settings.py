@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'blog',
     'storages',
+    'imagekit',
 ]
 
 MIDDLEWARE = [
@@ -77,12 +78,12 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': '',
-        'HOST': '',
-        'PORT': '',
-        'NAME': '',
-        'USER': '',
-        'PASSWORD': '',
+       'ENGINE': '',
+       'HOST': '',
+       'PORT': '',
+       'NAME': '',
+       'USER': '',
+       'PASSWORD': '',
     }
 }
 
@@ -127,18 +128,20 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # local 환경 static 파일, DEBUG = True 필요
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'mysite', 'static'),
-]
+# STATICFILES_DIRS = [
+#     os.path.join(BASE_DIR, 'mysite', 'static'),
+# ]
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # S3 Storage
 # DEFAULT_FILE_STORAGE = 'mysite.storages.MediaStorage'
-# STATICFILES_STORAGE = 'mysite.storages.StaticStorage'
-# MEDIAFILES_LOCATION = 'media'
-# STATICFILES_LOCATION = 'static'
+DEFAULT_FILE_STORAGE = 'mysite.storage_backends.CustomS3Boto3Storage'
+STATICFILES_STORAGE = 'mysite.storages.StaticStorage'
+
+MEDIAFILES_LOCATION = 'media'
+STATICFILES_LOCATION = 'static'
 
 # AWS Access
 print(CONFIG_SETTINGS_COMMON_FILE)

@@ -56,13 +56,16 @@
 
 .content {
     margin-left: 40px;
-    padding-top: 165px;
+    padding-top: 135px;
     position: static;
     z-index: 1;
 }
 
+.media{
+    margin-top: 30px;
+}
 
-h1, h2, h3, h4, p, .post #contents-out {
+h1, h2, h3, h4, h5, p, .post #contents-out {
     font-family: 'Do Hyeon', sans-serif;
 }
 
@@ -95,6 +98,7 @@ h1 {
 }
 
 .post {
+    margin-top: 30px;
     margin-bottom: 30px;
 }
 

@@ -27,6 +27,10 @@
     margin-bottom: 30px;
 }
 
+.comment ul li p {
+    margin-bottom: 0px;
+}
+
 .errorlist, .comment-form label{
     display: none;
 }

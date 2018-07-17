@@ -3,17 +3,21 @@
 
 {% block content %}
 {% for post in qs %}
-<div class="post">
-    <div class="date">
-        {% if post.published_at %}
-        <p>{{ post.author }} | {{ post.published_at | date:"Y/m/d" }} (수정됨)</p>
-        {% else %}
-        <p>{{ post.author }} | {{ post.created_at | date:"Y.m.d" }}</p>
-        {% endif %}
-    </div>
-    <h1><a href="{{ post.get_absolute_url }}">{{ post.title }}</a><small> [{{ post.comment_set.all.count }}]</small></h1>
-    <hr/>
+<div class="media">
+{% if post.photo_thumbnail %}
+  <img class="align-self-start mr-3" src="{{ post.photo_thumbnail.url }}" alt="Generic placeholder image">
+  <div class="media-body">
+    <h3 class="mt-0"><a href="{{ post.get_absolute_url }}">{{ post.title }}</a><small> [{{ post.comment_set.all.count }}]</small></h3>
+    <p>{{ post.author }} | {{ post.created_at | date:"Y.m.d" }}</p>
+  </div>
+{% else %}
+  <div class="media-body">
+    <h3 class="mt-0"><a href="{{ post.get_absolute_url }}">{{ post.title }}</a><small> [{{ post.comment_set.all.count }}]</small></h3>
+    <p>{{ post.author }} | {{ post.created_at | date:"Y.m.d" }}</p>
+  </div>
+{% endif %}
 </div>
+<hr/>
 {% endfor %}
 {% endblock %}
 

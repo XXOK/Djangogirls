@@ -2,6 +2,8 @@ import random
 from django.db import models
 from django.utils import timezone
 from django.shortcuts import reverse
+from imagekit.models import ImageSpecField
+from imagekit.processors import Thumbnail
 
 
 def get_random_name():
@@ -53,6 +55,12 @@ class Post(models.Model):
         max_length=300, verbose_name='내용', blank=True, null=True)
     photo = models.ImageField(
         max_length=300, verbose_name='이미지', upload_to='upload_img', blank=True
+    )
+    photo_thumbnail = ImageSpecField(
+        source='photo',  # 원본 ImageField 명
+        processors=[Thumbnail(64, 64)],  # 처리할 작업목록
+        format='JPEG',  # 최종 저장 포맷
+        options={'quality': 100} # 저장 옵션
     )
     created_at = models.DateTimeField(
             default=timezone.now)
