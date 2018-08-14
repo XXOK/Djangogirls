@@ -10,29 +10,34 @@
     <!-- Post-->
       <!-- Thumbnail-->
       {% if post.photo %}
-      <a href="{{ post.get_absolute_url }}" style="text-decoration:none"><div class="post-module">
-      <div class="thumbnail">
+      <a href="{{ post.get_absolute_url }}" style="text-decoration:none"><div class="post-module" style="border-radius: 1em;">
+      <div class="thumbnail" style="border-radius: 1em;">
         <div class="date">
           <div class="day" style="height:20px">{{ post.created_at | date:"d" }}</div>
           <div class="month">{{ post.created_at | date:"M" }}</div>
         </div><img src="{{ post.photo.url }}" style="width: 720px;height: 500px;"/>
       </div>
+      <div class="post-content" style="border-bottom-left-radius: 1em; border-bottom-right-radius: 1em;">
+        <h1 class="title">{{ post.title }}</h1>
+        <h2 class="sub_title" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-size: 17px;">{{ post.text }}</h2>
+        <p class="description">{{ post.text }}</p>
+        <div class="post-meta"><span class="timestamp"><i class="fa fa-clock-"></i> {{ post.created_at|timesince }} 전</span><span class="comments"><i class="fa fa-comments"></i><a href="{{ post.get_absolute_url }}"> {{ post.comment_set.all.count }} comments</a></span></div>
+      </div>
       {% else %}
-      <a href="{{ post.get_absolute_url }}" style="text-decoration:none"><div class="post-module" style="height: 196px;">
+      <a href="{{ post.get_absolute_url }}" style="text-decoration:none"><div class="post-module" style="height: 196px; border-radius: 1em;">
       <div class="thumbnail" style="height: 0px;">
         <div class="date">
           <div class="day" style="height:20px">{{ post.created_at | date:"d" }}</div>
           <div class="month">{{ post.created_at | date:"M" }}</div>
         </div>
       </div>
-      {% endif %}
-      <!-- Post Content-->
-      <div class="post-content">
+      <div class="post-content" style="border-radius: 1em;">
         <h1 class="title">{{ post.title }}</h1>
         <h2 class="sub_title" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-size: 17px;">{{ post.text }}</h2>
         <p class="description">{{ post.text }}</p>
         <div class="post-meta"><span class="timestamp"><i class="fa fa-clock-"></i> {{ post.created_at|timesince }} 전</span><span class="comments"><i class="fa fa-comments"></i><a href="{{ post.get_absolute_url }}"> {{ post.comment_set.all.count }} comments</a></span></div>
       </div>
+      {% endif %}
     </div>
   </div>
 {% endfor %}
