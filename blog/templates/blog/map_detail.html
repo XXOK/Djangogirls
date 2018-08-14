@@ -1,0 +1,59 @@
+{% extends 'blog/map_base.html' %}
+
+{% block content_detail %}
+
+  <div id="map" style="border: 0; position:fixed; top:0; left:0; right:0; bottom:0; width:100%; height: 100%;"></div>
+
+  <script type="text/javascript">
+    function ConvertSystemSourcetoHtml(str){
+     str = str.replace(/\"/g,"&quot;");
+     str = str.replace(/\'/g,"&#39;");
+     return str;
+    }
+
+    var locations = {{ empty }};
+
+    var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 17,
+      maxZoom: 20,
+      minZoom: 10,
+      center: new google.maps.LatLng(37.571737,126.983042),
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    });
+
+    var infowindow = new google.maps.InfoWindow();
+
+    var marker, i;
+
+    var markers = [];
+
+    var icon = {
+        url: "https://s3.ap-northeast-2.amazonaws.com/posting-image/static/img/marker-pin.png",
+        scaledSize: new google.maps.Size(27, 43)
+    };
+
+    for (i = 0; i < locations.length; i++) {
+      marker = new google.maps.Marker({
+        position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+        map: map,
+        icon: icon
+      });
+
+      // marker를 array 형태로 만들어줌 (for문이라 marker의 값이 자꾸 하나씩 나옴)
+      markers.push(marker)
+
+      google.maps.event.addListener(marker, 'click', (function(marker, i) {
+        return function() {
+          infowindow.setContent('<h4>' + locations[i][0] + '</h4>' + '<strong>' + "<a href= 'https://search.naver.com/search.naver?where=post&query=" + locations[i][0] + "'" + "target='_blank'>" + '<i class="fa fa-search"></i>' + " 네이버 블로그 검색하기" + "</a>" + '<strong>')
+          infowindow.open(map, marker);
+        }
+      })(marker, i));
+    }
+
+    var markerCluster = new MarkerClusterer(map, markers, {
+      maxZoom: 15,
+      gridSize: 100,
+      imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'
+    });
+  </script>
+{% endblock %}

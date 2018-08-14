@@ -1,0 +1,22 @@
+{% extends 'blog/map_base.html' %}
+
+{% block content_form %}
+<div class="create-posting">
+    <h3 style="margin-bottom:15px;">여기가 차붐의 나라입니까?</h3>
+    <form class="post-form" method="POST" enctype="multipart/form-data" autocomplete="off">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <div class="sub-button">
+            <div class="cancle-button">
+                <a href="{% url 'map_detail' %}">
+                    <button type="button" class="btn btn-outline-secondary">취소하기</button>
+                </a>
+            </div>
+            <div class="save-button">
+                <button type="submit" class="btn btn-outline-primary">저장하기</button>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}

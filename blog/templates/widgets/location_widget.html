@@ -1,0 +1,102 @@
+{% include "django/forms/widgets/input.html" %}
+<!--TextInput > input, NumberInput > number-->
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+
+<span id="address_{{ widget.attrs.id }}"></span>
+<p style="text-align: right;">
+ <input id="search_{{ widget.attrs.id }}" type="text" placeholder="주소를 입력해서 검색해보세요." size="" />
+</p>
+<div id="map_{{ widget.attrs.id }}" style="height: 200px;"></div>
+
+<script>
+    function geocode(address, callback) {
+        $.get('https://maps.googleapis.com/maps/api/geocode/json', {
+            // get 요청 시 address, key 전달
+            address: address,
+            key: ''
+        }).done(function(res) {
+            callback(res.results);
+            // 응답의 results 를 넘긴다.
+        }).fail(function() {
+            alert('잠시 후 다시 시도해주세요.');
+        });
+    };
+
+
+    $(function() {
+
+        var center = new google.maps.LatLng(37.575362, 126.9798593);
+
+        var map_el = $('#map_{{ widget.attrs.id }}')[0];
+        var map = new google.maps.Map(map_el, {
+            zoom: 15,
+            center: center,
+        });
+
+        var icon = {
+            url: "https://s3.ap-northeast-2.amazonaws.com/posting-image/static/img/marker-pin.png",
+            scaledSize: new google.maps.Size(27, 43)
+        };
+
+        var marker = new google.maps.Marker({
+            map: map,
+            position: center,
+            icon: icon
+        });
+
+        map.addListener('click', function(e) {
+            marker.setPosition(e.latLng);
+            // 새로운 위치에 마커 설정
+
+            var loc = e.latLng.lat() + ',' + e.latLng.lng();
+            $('#{{ widget.attrs.id }}').val(loc);
+            // 위,경도 입력
+
+            geocode(loc, function(results) {
+
+                if ( results.length == 0 ) {
+                    $('#address_{{ widget.attrs.id }}').html('주소 검색결과가 없습니다.');
+                }
+                else {
+                    $('#address_{{ widget.attrs.id }}').html(results[0].formatted_address);
+                    // 유사도가 가장 높은 results (검색 결과 첫번째)
+                }
+            });
+        });
+
+        $('#search_{{ widget.attrs.id }}').keypress(function(e) {
+            if ( e.keyCode == '13' ) { // Enter 입력일 경우
+                e.preventDefault();
+
+                var q = $(this).val();
+                if ( q.length > 0 ) {
+                    geocode(q, function(results) {
+                        if ( results.length == 0 ) {
+                            $('#address_{{ widget.attrs.id }}').html('검색결과가 없습니다.');
+                        }
+                        else {
+                            $('#address_{{ widget.attrs.id }}').html(results[0].formatted_address);
+                            // 유사도가 가장 높은 results (검색 결과 첫번째)
+
+                            var latLng = new google.maps.LatLng(
+                            // 클릭한 위치에 위,경도를 만듬
+                                results[0].geometry.location.lat,
+                                results[0].geometry.location.lng);
+
+                            map.setCenter(latLng);
+                            // 해당 위치로 센터 이동
+                            map.setZoom(15);
+                            // 줌 레벨 변경
+                            marker.setPosition(latLng);
+                            // 마커 위치 이동
+
+                            $('#{{ widget.attrs.id }}').val(latLng.lat() + ',' + latLng.lng());
+                        }
+                    });
+                }
+
+            }
+        });
+    });
+</script>

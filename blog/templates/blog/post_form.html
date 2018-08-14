@@ -1,21 +1,26 @@
 {% extends 'blog/base.html' %}
+{% load static %}
 
 {% block content %}
-<div class="create-posting">
-    <h2>바르고 고운말</h2>
-    <form class="post-form" method="POST" enctype="multipart/form-data" autocomplete="off">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <div class="sub-button">
-            <div class="cancle-button">
-                <a href="{% url 'post_list' %}">
-                    <button type="button" class="btn btn-outline-secondary">취소하기</button>
-                </a>
-            </div>
-            <div class="save-button">
-                <button type="submit" class="btn btn-outline-primary">저장하기</button>
-            </div>
+<div class="content container">
+    <div class="post-content">
+        <div class="create-posting">
+            <h3 style="margin-bottom:15px;">나랏 말싸미 듕귁에 달아</h3>
+            <form class="post-form" method="POST" enctype="multipart/form-data" autocomplete="off">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <div class="sub-button">
+                    <div class="cancle-button">
+                        <a href="{% url 'post_list' %}">
+                            <button type="button" class="btn btn-outline-secondary">취소하기</button>
+                        </a>
+                    </div>
+                    <div class="save-button">
+                        <button type="submit" class="btn btn-outline-primary">저장하기</button>
+                    </div>
+                </div>
+            </form>
         </div>
-    </form>
+    </div>
 </div>
 {% endblock %}

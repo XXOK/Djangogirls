@@ -1,3 +1,26 @@
+.content {
+    padding-top: 150px;
+}
+
+.post #contents-in {
+    word-break: break-all;
+    display: none;
+}
+
+
+.post #contents-out {
+    word-break: break-all;
+    font-size: 18px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.post-photo {
+    margin-bottom: 20px;
+    width: 100%;
+    height: 400px;
+}
+
 .comment-form textarea {
     width: 100%;
     resize: none;
@@ -12,6 +35,10 @@
 .foo {
     margin-top: 20px;
     margin-bottom: 30px;
+}
+
+#id_comment {
+    border: 1px solid #dfdfdf;
 }
 
 .sub-button {

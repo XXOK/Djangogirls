@@ -2,6 +2,10 @@
     margin-top: 30px;
 }
 
+#id_text {
+    border: 1px solid #dfdfdf;
+}
+
 .sub-button{
     display: flex;
     float: right;

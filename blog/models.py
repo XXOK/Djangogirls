@@ -86,3 +86,8 @@ class Comment(models.Model):
     author = models.CharField(max_length=100, default=get_random_name)
     comment = models.TextField(max_length=100)
     created_at = models.DateTimeField(auto_now_add=True)
+
+
+class Place(models.Model):
+    name = models.CharField(max_length=10, verbose_name='장소 이름')
+    location = models.CharField(max_length=100, verbose_name='위치')

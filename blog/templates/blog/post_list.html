@@ -2,24 +2,39 @@
 {% load static %}
 
 {% block content %}
+<div class="container" style="padding-top: 100px;">
 {% for post in qs %}
-<div class="media">
-{% if post.photo_thumbnail %}
-  <img class="align-self-start mr-3" src="{{ post.photo_thumbnail.url }}" alt="Generic placeholder image">
-  <div class="media-body">
-    <h3 class="mt-0"><a href="{{ post.get_absolute_url }}">{{ post.title }}</a><small> [{{ post.comment_set.all.count }}]</small></h3>
-    <p>{{ post.author }} | {{ post.created_at | date:"Y.m.d" }}</p>
+  <!-- Normal Demo-->
+  <div class="column">
+    <div class="demo-title"></div>
+    <!-- Post-->
+      <!-- Thumbnail-->
+      {% if post.photo %}
+      <a href="{{ post.get_absolute_url }}" style="text-decoration:none"><div class="post-module">
+      <div class="thumbnail">
+        <div class="date">
+          <div class="day" style="height:20px">{{ post.created_at | date:"d" }}</div>
+          <div class="month">{{ post.created_at | date:"M" }}</div>
+        </div><img src="{{ post.photo.url }}" style="width: 720px;height: 500px;"/>
+      </div>
+      {% else %}
+      <a href="{{ post.get_absolute_url }}" style="text-decoration:none"><div class="post-module" style="height: 196px;">
+      <div class="thumbnail" style="height: 0px;">
+        <div class="date">
+          <div class="day" style="height:20px">{{ post.created_at | date:"d" }}</div>
+          <div class="month">{{ post.created_at | date:"M" }}</div>
+        </div>
+      </div>
+      {% endif %}
+      <!-- Post Content-->
+      <div class="post-content">
+        <h1 class="title">{{ post.title }}</h1>
+        <h2 class="sub_title" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-size: 17px;">{{ post.text }}</h2>
+        <p class="description">{{ post.text }}</p>
+        <div class="post-meta"><span class="timestamp"><i class="fa fa-clock-"></i> {{ post.created_at|timesince }} 전</span><span class="comments"><i class="fa fa-comments"></i><a href="{{ post.get_absolute_url }}"> {{ post.comment_set.all.count }} comments</a></span></div>
+      </div>
+    </div>
   </div>
-{% else %}
-  <div class="media-body">
-    <h3 class="mt-0"><a href="{{ post.get_absolute_url }}">{{ post.title }}</a><small> [{{ post.comment_set.all.count }}]</small></h3>
-    <p>{{ post.author }} | {{ post.created_at | date:"Y.m.d" }}</p>
-  </div>
-{% endif %}
-</div>
-<hr/>
 {% endfor %}
-{% endblock %}
-
-{% block js %}
+</div>
 {% endblock %}

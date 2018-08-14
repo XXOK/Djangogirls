@@ -14,6 +14,8 @@ import json
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CONFIG_SECRET_DIR = os.path.join(BASE_DIR, '.config_secret')
 CONFIG_SETTINGS_COMMON_FILE = os.path.join(CONFIG_SECRET_DIR, 'settings_common.json')
+CONFIG_MAPS_DIR = os.path.join(BASE_DIR, '.config_maps')
+CONFIG_SETTINGS_MAPS_FILE = os.path.join(CONFIG_MAPS_DIR, 'settings_maps.json')
 
 
 # Quick-start development settings - unsuitable for production
@@ -77,16 +79,19 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
+  'default': {
        'ENGINE': '',
        'HOST': '',
        'PORT': '',
        'NAME': '',
        'USER': '',
        'PASSWORD': '',
-    }
+  }
 }
 
+# sqlite3 local test
+# 'ENGINE': 'django.db.backends.sqlite3',
+# 'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
 
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
@@ -125,12 +130,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-
-# local 환경 static 파일, DEBUG = True 필요
-# STATICFILES_DIRS = [
-#     os.path.join(BASE_DIR, 'mysite', 'static'),
-# ]
+STATIC_DIR = os.path.join(BASE_DIR, 'blog/static')
+STATICFILES_DIRS = [
+    STATIC_DIR,
+]
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
@@ -138,15 +142,18 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # S3 Storage
 # DEFAULT_FILE_STORAGE = 'mysite.storages.MediaStorage'
 DEFAULT_FILE_STORAGE = 'mysite.storage_backends.CustomS3Boto3Storage'
-STATICFILES_STORAGE = 'mysite.storages.StaticStorage'
+# STATICFILES_STORAGE = 'mysite.storages.StaticStorage'
 
 MEDIAFILES_LOCATION = 'media'
-STATICFILES_LOCATION = 'static'
+# STATICFILES_LOCATION = 'static'
 
 # AWS Access
-print(CONFIG_SETTINGS_COMMON_FILE)
 config_secret = json.loads(open(CONFIG_SETTINGS_COMMON_FILE).read())
 AWS_ACCESS_KEY_ID = config_secret['aws']['AWS_ACCESS_KEY_ID']
 AWS_SECRET_ACCESS_KEY = config_secret['aws']['AWS_SECRET_ACCESS_KEY']
 AWS_STORAGE_BUCKET_NAME = config_secret['aws']['AWS_STORAGE_BUCKET_NAME']
 AWS_QUERYSTRING_AUTH = False
+
+# Google Maps Access
+config_maps = json.loads(open(CONFIG_SETTINGS_MAPS_FILE).read())
+GOOGLE_MAPS_API = config_maps['maps']['SRC']

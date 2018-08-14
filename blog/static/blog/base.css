@@ -1,0 +1,81 @@
+body {
+  background: #fafafa;
+  font-family: 'Do Hyeon', sans-serif;
+  font-size: 14px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.page-header {
+    margin-top: 0;
+    width: 100%;
+    padding: 20px 20px 20px 20px;
+    margin-bottom: 0px;
+    position: fixed;
+    background-color: #FFFFFF;
+    z-index: 3;
+    border-bottom: 1px solid rgba(0,0,0,.0975);
+}
+
+.area_logo {
+    text-align: left;
+    padding-left: 30px;
+}
+
+.logo {
+    width: 120px;
+}
+
+.page-sub-header > .info{
+    margin-top: 1px;
+    margin-bottom: 1px;
+}
+
+.page-sub-header > .info-text{
+    padding-left: 7px;
+}
+
+.glyphicon-plus {
+    color: gray;
+}
+
+.posting {
+    color: gray;
+}
+
+.maps {
+    color: gray;
+}
+
+.form-button{
+    color: #ffffff;
+    font-size: 10px;
+    text-decoration: none;
+}
+
+h1, h2, h3, h4, h5, p, .post #contents-out {
+}
+
+h1 {
+    font-size: 35;
+}
+
+.date {
+    color: black;
+}
+
+.save {
+    float: right;
+}
+
+.post-form textarea, .post-form input {
+    width: 100%;
+    resize: none;
+}
+
+.top-menu, .top-menu:hover, .top-menu:visited {
+    color: #ffffff;
+    float: right;
+    font-size: 26pt;
+    margin-right: 20px;
+}

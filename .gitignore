@@ -59,5 +59,6 @@ fabric.properties
 # Sonarlint plugin
 .idea/sonarlint
 
+.config_maps
 .config_secret
 .config

@@ -1,4 +1,4 @@
-{% load staticfiles %}
+{% load static %}
 <html>
     <head>
         <meta charset="utf-8"/>
@@ -11,7 +11,8 @@
         <link rel="stylesheet" href="{% static 'blog/post_list.css' %}">
         <script defer src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA04wgaatEvDxFzqUb9YnhmnLkC2bM1Sgc" type="text/javascript"></script>
+        <script src="{{ GOOGLE_MAP_API }}" type="text/javascript"></script>
+        <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
         <meta property="og:title" content="상상의 박나래를 펼쳐라">
         <meta property="og:image" content="{% static 'img/logo-share.png' %}">
         <meta property="og:description" content="익명의 유저들이 자유롭게 소통하는 공간입니다.">
@@ -20,26 +21,35 @@
     <body>
         <div class="page-header">
             <div class="area_logo">
-                <a href="{% url 'post_list' %}">
+                <a href="{% url 'map_detail' %}">
                     <img class="logo" src="{% static 'img/logo.png' %}"/>
                 </a>
-                <a href="{% url 'post_new' %}" class="top-menu">
+                <a href="{% url 'map_new' %}" class="top-menu">
                     <div class="posting">
                         <i class="far fa-edit" style="width:30px;"></i>
                     </div>
                 </a>
-                <a href="{% url 'map_detail' %}" class="top-menu">
+                <a href="{% url 'post_list' %}" class="top-menu">
                     <div class="maps">
-                        <i class="fas fa-map-marked-alt" style="width:30px;"></i>
+                        <i class="fas fa-list-ul" style="padding-top:1.3px; width:26px;"></i>
                     </div>
                 </a>
             </div>
         </div>
-        {% block content %}
-        {% endblock %}
-        <div class="page-footer">
-            <div class="footer" style="margin-top:80px;">
+        {% if request.get_full_path == "/maps/new/" %}
+            <div class="content container">
+                <div class="row">
+                    <div class="col-md-8">
+                        {% block content_form %}
+                        {% endblock %}
+                    </div>
+                </div>
             </div>
-        </div>
+        {% else %}
+            <div class="map_detail" style="padding-top: 80px; height:100%">
+                {% block content_detail %}
+                {% endblock %}
+            </div>
+        {% endif %}
     </body>
 </html>
