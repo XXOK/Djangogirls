@@ -128,6 +128,7 @@
   opacity: 1 !important;
 }
 .container {
+  padding-top: 120px;
   max-width: 800px;
   min-width: 640px;
   margin: 0 auto;
@@ -140,7 +141,7 @@
 }
 .container .column {
   width: 100%;
-  padding: 0 25px;
+  padding: 40px 25px;
   -webkti-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;

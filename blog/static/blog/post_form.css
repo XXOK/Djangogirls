@@ -1,5 +1,9 @@
-.create-posting{
-    margin-top: 30px;
+.post-content {
+    padding-top: 60px;
+}
+
+.row {
+    padding-top: 60px;
 }
 
 #id_text {
