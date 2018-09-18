@@ -25,7 +25,7 @@ CONFIG_SETTINGS_MAPS_FILE = os.path.join(CONFIG_MAPS_DIR, 'settings_maps.json')
 SECRET_KEY = 'enk0%#^r**3^(plyovid8pm1bsr*c+!6ng+l#icf47r71pjh-6'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'blog',
+    'rest_framework',
     'storages',
     'imagekit',
 ]
@@ -79,14 +80,14 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
 DATABASES = {
-  'default': {
+   'default': {
        'ENGINE': '',
        'HOST': '',
        'PORT': '',
        'NAME': '',
        'USER': '',
        'PASSWORD': '',
-  }
+   }
 }
 
 # sqlite3 local test
@@ -129,6 +130,14 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
+# STATIC_URL = '/static/'
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+#
+# # local 환경 static 파일, DEBUG = True 필요
+# # STATICFILES_DIRS = [
+# #     os.path.join(BASE_DIR, 'mysite', 'static'),
+# # ]
+
 STATIC_URL = '/static/'
 STATIC_DIR = os.path.join(BASE_DIR, 'blog/static')
 STATICFILES_DIRS = [
@@ -142,10 +151,10 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # S3 Storage
 # DEFAULT_FILE_STORAGE = 'mysite.storages.MediaStorage'
 DEFAULT_FILE_STORAGE = 'mysite.storage_backends.CustomS3Boto3Storage'
-# STATICFILES_STORAGE = 'mysite.storages.StaticStorage'
+STATICFILES_STORAGE = 'mysite.storages.StaticStorage'
 
 MEDIAFILES_LOCATION = 'media'
-# STATICFILES_LOCATION = 'static'
+STATICFILES_LOCATION = 'static'
 
 # AWS Access
 config_secret = json.loads(open(CONFIG_SETTINGS_COMMON_FILE).read())

@@ -5,6 +5,15 @@ from django.utils import timezone
 from .models import Post, Comment, Place
 from .forms import PostForm, CommentForm, MapForm
 from django.utils.safestring import mark_safe
+from rest_framework import viewsets
+from blog.serializer import PostSerializer
+
+
+class PostViewSet(viewsets.ModelViewSet):
+
+    queryset = Post.objects.all().order_by('-created_at')
+
+    serializer_class = PostSerializer
 
 
 def post_list(request):
