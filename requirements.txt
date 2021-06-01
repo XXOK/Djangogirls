@@ -78,7 +78,7 @@ tornado==5.0.2
 traitlets==4.3.2
 uritools==2.2.0
 urlextract==0.8.3
-urllib3==1.23
+urllib3==1.26.5
 wcwidth==0.1.7
 webencodings==0.5.1
 widgetsnbextension==3.2.1
